@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng kí</title>
+    <link rel="stylesheet" href="./css/signup.css">
+</head>
+<body>
+    
+  <form class="signup">
+    <img src="./image/relife.jpeg" class="logo">
+
+      <div>
+        <input type="text" autocapitalize="off" id="email" title="email"  placeholder="Email" />
+        <small></small>
+    </div>
+
+      <div>
+          <input type="text" autocapitalize="off" id="username" title="Username" placeholder="Tên tài khoản" />
+          <small></small>
+      </div>
+  
+      <div>
+          <input type="password" autocapitalize="off" id="password" title="Mật khẩu" placeholder="Mật khẩu" />
+          <small></small>
+      </div>
+  
+      <button type="submit" class="submit-btn" id="submit">Tạo tài khoản</button>
+      <a href="./signin.html" class="link" >Bạn đã có tài khoản? Đăng nhập tại đây</a>
+      <a class="button-home" href="./signin.html">Đã có tài khoản?</a>
+  </form>
+  
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Cấu hình Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyC94Fr3Kfay6r37x40SUAZyiqUn1QeuEXI",
+        authDomain: "shopclothes-fb1ee.firebaseapp.com",
+        projectId: "shopclothes-fb1ee",
+        storageBucket: "shopclothes-fb1ee.appspot.com",
+        messagingSenderId: "167806018527",
+        appId: "1:167806018527:web:487edef461ce408a2b1a6a",
+        measurementId: "G-9KRR8JVQR6"
+    };
+
+    // Khởi tạo Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    // Lắng nghe sự kiện 'click' trên nút đăng ký
+    document.getElementById("submit").addEventListener('click', function(e) {
+        // Ngăn không cho form submit theo mặc định
+        e.preventDefault();
+
+        // Lấy giá trị từ các trường đầu vào
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+
+        // Ghi dữ liệu vào Firebase
+        set(ref(db, 'user/' + username), {
+            username: username,
+            email: email,
+            password: password
+        })
+        .then(() => {
+            alert("Đăng ký thành công");
+            location.replace("./signin.html");
+        })
+        .catch((error) => {
+            console.error("Lỗi khi đăng ký: ", error);
+            alert("Đăng ký thất bại. Vui lòng thử lại.");
+        });
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="./css/signup.css">
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+</head>
+
+
+<body>
+    <img src="./image/R-removebg-preview (1).png" class="loader">
+
+    <div class="modal" >
+        <div class="otp-container">
+        <h2>Nhập Mã OTP</h2>
+        <input type="text" id="otp" class="otp" placeholder="Nhập mã OTP của bạn" required />
+        <button id="submit-otp">Xác nhận</button>
+        <button id="exit-otp" class="exit-button">Thoát</button> <!-- Nút thoát -->
+        </div >
+
+    </div>
+
+    <div class="container">
+        <img src="./image/relife.jpeg" style="width: 200px; height: auto;" class="logo">
+
+       
+       
+
+
+        <form class="signin">
+            <div>
+                <input type="text" title="Tên đăng nhập" id="username" placeholder="Tên đăng nhập" />
+                <small></small>
+            </div>
+
+
+            <div>
+                <input type="password" title="Nhập mật khẩu" id="password" placeholder="Mật khẩu" />
+                <small></small>
+            </div>
+
+            <button id="submit" type="submit" class="submit-btn">Đăng nhập</button>
+        </form>
+        <a class="link" href="./signup.html">Bạn chưa có tài khoản? Tạo tại đây</a>
+        <a id="forgot-pass" class="link" href="#">Quên mật khẩu?</a>
+        <a class="button-home" href="./home.html">Quay lại</a>
+    </div>
+
+
+
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+        // Cấu hình Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyC94Fr3Kfay6r37x40SUAZyiqUn1QeuEXI",
+            authDomain: "shopclothes-fb1ee.firebaseapp.com",
+            projectId: "shopclothes-fb1ee",
+            storageBucket: "shopclothes-fb1ee.appspot.com",
+            messagingSenderId: "167806018527",
+            appId: "1:167806018527:web:487edef461ce408a2b1a6a",
+            measurementId: "G-9KRR8JVQR6"
+        };
+
+        // Khởi tạo Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        
+
+
+        document.getElementById("submit").addEventListener('click', function (e) {
+            e.preventDefault(); // Ngăn không cho form gửi đi
+        
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+        
+            // Lấy dữ liệu người dùng từ Firebase
+            const userRef = ref(db, 'user/' + username);
+            get(userRef)
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const userData = snapshot.val();
+                        // So sánh mật khẩu và email
+                        if (userData.password === password) { 
+                           
+                           // document.querySelector('.modal').style.display = 'flex'; 
+                           
+                            alert("Đăng nhập thành công!");
+                           
+                            //Lưu thông tin người dùng vào sessionStorage
+                            sessionStorage.setItem('username', username);
+
+                            // Chuyển hướng đến trang chính
+                            location.replace("./home.html");                            
+                        } else {
+                            alert("Tên tài khoản hoặc mật khẩu/email không đúng.");
+                        }
+                    } else {
+                        alert("Tên tài khoản không tồn tại.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("Lỗi khi lấy dữ liệu: ", error);
+                    alert("Đã xảy ra lỗi. Vui lòng thử lại.");
+                });
+        });
+        
+    </script>
+    <script>
+        document.getElementById('exit-otp').addEventListener('click', function() {
+            document.querySelector('.modal').style.display = 'none'; // Ẩn OTP container
+            // Chuyển hướng về trang đăng nhập hoặc trang khác
+            window.location.href = './signin.html'; // Đường dẫn đến trang đăng nhập
+        });
+      
+    </script>
+    <script src="./js/signin.js"></script>
+</body>
+
+</html>

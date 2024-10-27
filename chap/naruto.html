@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Đảm bảo padding và border được tính vào chiều rộng và chiều cao */
+}   
+
+        html, body {
+        height: 100%; /* Đảm bảo chiều cao cho body */
+        }
+        .menu {
+            position: fixed;        /* Đặt vị trí của header là cố định */
+            top: 0;                /* Đặt ở phía trên cùng */
+            left: 0;               /* Đặt ở bên trái */
+            width: 100%;           /* Đảm bảo header chiếm toàn bộ chiều rộng */
+            z-index: 1000;         /* Đảm bảo header nằm trên các phần tử khác */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho header */
+        }
+        
+        /* Để đảm bảo nội dung không bị che bởi header */
+
+        .chap {
+            display: flex;                 /* Sử dụng Flexbox để dễ dàng căn giữa */
+            flex-direction: column;       /* Xếp dọc các phần tử con */
+            align-items: center;          /* Căn giữa theo trục ngang */
+            justify-content: center;      /* Căn giữa theo trục dọc */
+            text-align: center;           /* Căn giữa nội dung văn bản */
+            margin: 0 auto;               /* Giúp căn giữa nếu có chiều rộng xác định */
+            width: 100%;                   /* Thiết lập chiều rộng cho chap */
+           
+
+
+            
+        }
+        .header-content {
+            display: block;
+            color: aliceblue;
+            font-size: 30px;
+        }
+        
+        .chap .content  .content-img{
+            max-height: 700px;
+            width: auto;
+            display: block;
+        }
+        
+    </style>
+</head>
+<body>
+    <a class="menu" href="/home.html" style="text-decoration: none; color:aliceblue; font-size: 50px; background-color: rgb(24, 24, 24);" >Trang chủ</a>
+    <div style="background-color: black;">    
+    <div class="chap">
+        <div class="header">
+            <a class="header-content">Kimetsu no yaiba season</a>
+        </div>
+        <div class="content">
+            <img class="content-img" src="/image/n1.jpg">
+            <img class="content-img" src="/image/n2.jpg">
+            <img class="content-img" src="/image/n3.jpg">
+            <img class="content-img" src="/image/n4.jpg">
+            <img class="content-img" src="/image/n5.jpg">
+            <img class="content-img" src="/image/n6.jpg">
+            <img class="content-img" src="/image/n7.jpg">
+        </div>
+    </div>
+    </div>
+</body>
+</html>
