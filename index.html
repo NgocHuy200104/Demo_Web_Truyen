@@ -3,56 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Truyện Online</title>
+    <title>Truyện Online - Demo</title>
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="icon" href="/image/test-icon-28.jpg" type="jpg">
 </head>
 <body>
     <header>
-        <div class="logo" ><a class="logo1" href="./home.html">Truyện Online</a></div>
+        <div class="logo"><a class="logo1" href="./home.html">Truyện Online</a></div>
         <nav>
             <ul class="header-menu">
                 <li><a href="./home.html">Trang chủ</a></li>
-                <li><a href="#">Thể loại</a></li>
+                <li class="dropdown">
+                    <a href="#">Thể loại</a>
+                    <div class="dropdown-content">
+                        <a href="#">Hành động</a>
+                        <a href="#">Phiêu lưu</a>
+                        <a href="#">Tình cảm</a>
+                        <a href="#">Hài hước</a>
+                        <a href="#">Kinh dị</a>
+                        <a href="#">Thể thao</a>
+                    </div>
+                </li>
                 <li><a href="#">Danh sách yêu thích</a></li>
-                <li><a href="#">Giới thiệu</a></li>
                 <li><a href="#connection">Liên hệ</a></li>
             </ul>
         </nav>
-        <div >
+        <div>
             <a class="login" href="./signin.html">Đăng nhập</a>
             <a class="logout-btn" style="display: none;">Đăng xuất</a>
         </div>
     </header>
   
     <div id="content" style="background-color: rgb(89, 89, 89);">
-    <section class="featured-stories">
-        <h2>Truyện Nổi Bật</h2>
-        <div class="story">
-            <img src="./image/kimet_s2.jpg" alt="Truyện A">
-            <h3>Kimetsu no yaiba season</h3>
-            <a id="read-button1" class="read-button">Đọc ngay</a>
-        </div>
-        <a id="temp-link1" href="./chap/kitmet.html" style="display: none;"></a>
+        <section class="featured-stories">
+            <h2>Truyện Nổi Bật</h2>
+            <div class="story">
+                <img src="./image/kimet_s2.jpg" alt="Truyện A">
+                <h3>Kimetsu no yaiba season</h3>
+                <a id="read-button1" class="read-button">Đọc ngay</a>
+            </div>
+            <a id="temp-link1" href="./chap/kitmet.html" style="display: none;"></a>
+
+            <div class="story">
+                <img src="./image/naruto.jpg" alt="Truyện B">
+                <h3>Naruto shippuden</h3>
+                <a id="read-button3" class="read-button">Đọc ngay</a>
+            </div>
+            <a id="temp-link2" href="./chap/naruto.html" style="display: none;"></a>
+
+            <div class="story">
+                <img src="./image/onepiece.jpg" alt="One Piece">
+                <h3>One Piece</h3>
+                <a id="read-button4" class="read-button">Đọc ngay</a>
+            </div>
+            <a id="temp-link3" href="#" style="display: none;"></a>
 
         <div class="story">
-            <img src="./image/naruto.jpg" alt="Truyện B">
-            <h3>Naruto shippuden</h3>
-            <a id="read-button3" class="read-button">Đọc ngay</a>
+            <img src="./image/att.jpg" alt="Truyện D">
+            <h3>Attack on Titan</h3>
+            <a id="read-button5" class="read-button">Đọc ngay</a>
         </div>
-        <a id="temp-link2" href="./chap/naruto.html" style="display: none;"></a>
+        <a id="temp-link4" href="#" style="display: none;"></a>
 
-        <!-- Thêm các truyện khác ở đây -->
-    </section>
-
-</div>
+        <div class="story">
+            <img src="./image/myhero.jpg" alt="Truyện E">
+            <h3>My Hero Academia</h3>
+            <a id="read-button6" class="read-button">Đọc ngay</a>
+        </div>
+        <a id="temp-link5" href="#" style="display: none;"></a>
+           
+        </section>
+    </div>
 
     <footer id="connection">
         <p>Thông tin liên hệ: Email - huyphamforedu@gmail.com</p>
-        <p>© 2024 Truyện Online. Bản quyền thuộc về tác giả.</p>
+        <p>Đây chỉ là test demo web, không có mục đích thương mại</p>
     </footer>
-
-
-
 
     <script src="./js/home.js"></script>
 </body>

@@ -16,6 +16,11 @@
         <small></small>
     </div>
 
+    <div>
+        <input type="text" autocapitalize="off" id="phone" title="Số điện thoại" placeholder="Số điện thoại" />
+        <small></small>
+    </div>
+    
       <div>
           <input type="text" autocapitalize="off" id="username" title="Username" placeholder="Tên tài khoản" />
           <small></small>
@@ -51,34 +56,95 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
+     // Lấy các phần tử đầu vào
+     const emailInput = document.getElementById("email");
+     const usernameInput = document.getElementById("username");
+     const passwordInput = document.getElementById("password");
+ 
+     // Hàm kiểm tra email hợp lệ
+     function validateEmail(email) {
+         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+         return emailPattern.test(email);
+     }
+ 
+     // Hàm kiểm tra username hợp lệ (tối thiểu 3 ký tự)
+     function validateUsername(username) {
+         return username.length >= 3;
+     }
+ 
+     // Hàm kiểm tra mật khẩu hợp lệ (tối thiểu 6 ký tự)
+     function validatePassword(password) {
+         return password.length >= 6;
+     }
+ 
     // Lắng nghe sự kiện 'click' trên nút đăng ký
     document.getElementById("submit").addEventListener('click', function(e) {
-        // Ngăn không cho form submit theo mặc định
         e.preventDefault();
 
         // Lấy giá trị từ các trường đầu vào
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+        const username = usernameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        let valid = true;
 
+        function validateEmail(email) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailPattern.test(email);
+        }
+        
+        // Hàm kiểm tra username hợp lệ (tối thiểu 10 ký tự)
+        function validateUsername(username) {
+            return username.length >= 10;
+        }
+        
+        // Hàm kiểm tra mật khẩu hợp lệ (tối thiểu 8 ký tự)
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+        // Kiểm tra email
+        if (!validateEmail(email)) {
+            emailInput.nextElementSibling.textContent = "Email không hợp lệ.";
+            valid = false;
+        } else {
+            emailInput.nextElementSibling.textContent = "";
+        }
 
-        // Ghi dữ liệu vào Firebase
-        set(ref(db, 'user/' + username), {
-            username: username,
-            email: email,
-            password: password
-        })
-        .then(() => {
-            alert("Đăng ký thành công");
-            location.replace("./signin.html");
-        })
-        .catch((error) => {
-            console.error("Lỗi khi đăng ký: ", error);
-            alert("Đăng ký thất bại. Vui lòng thử lại.");
-        });
+        // Kiểm tra username
+        if (!validateUsername(username)) {
+            usernameInput.nextElementSibling.textContent = "Tên tài khoản phải có ít nhất 10 ký tự.";
+            valid = false;
+        } else {
+            usernameInput.nextElementSibling.textContent = "";
+        }
+
+        // Kiểm tra password
+        if (!validatePassword(password)) {
+            passwordInput.nextElementSibling.textContent = "Mật khẩu phải có ít nhất 8 ký tự.";
+            valid = false;
+        } else {
+            passwordInput.nextElementSibling.textContent = "";
+        }
+
+        // Nếu tất cả các trường hợp lệ, ghi dữ liệu vào Firebase
+        if (valid) {
+            // Ghi dữ liệu vào Firebase
+            set(ref(db, 'user/' + username), {
+                username: username,
+                email: email,
+                password: password
+            })
+            .then(() => {
+                alert("Đăng ký thành công");
+                location.replace("./signin.html");
+            })
+            .catch((error) => {
+                console.error("Lỗi khi đăng ký: ", error);
+                alert("Đăng ký thất bại. Vui lòng thử lại.");
+            });
+        }
     });
 </script>
-
+<script src="/js/signup.js"></script>
 
 </body>
 </html>

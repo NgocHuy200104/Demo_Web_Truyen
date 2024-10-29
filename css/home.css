@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    padding-top: 60px;
 }
 
 header {
@@ -12,81 +13,93 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 98%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 100;
 }
-/* home.css */
-header {
-    position: fixed;        /* Đặt vị trí của header là cố định */
-    top: 0;                /* Đặt ở phía trên cùng */
-    left: 0;               /* Đặt ở bên trái */
-    width: 98%;           /* Đảm bảo header chiếm toàn bộ chiều rộng */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng cho header */
-}
 
-/* Để đảm bảo nội dung không bị che bởi header */
-body {
-    padding-top: 60px;    /* Đặt khoảng cách từ trên cùng của body đến nội dung */
-}
-
-header .logo {
+.logo {
     font-size: 24px;
     font-weight: bold;
-    text-decoration: none;
 }
-.header-menu li:hover{
+
+.logo1 {
+    text-decoration: none;
+    color: #fff;
+}
+
+nav ul.header-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header-menu li {
+    margin: 0 15px;
+    position: relative;
+    padding: 10px;
+}
+
+.header-menu li:hover {
     background-color: #5e5e5e;
     border-radius: 5px;
 }
-.logo1{
+
+.header-menu li a {
+    color: #fff ;
     text-decoration: none;
-    color: #fff;
+}
+
+.header-menu li {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: black !important;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 
 .login,
 .logout-btn {
-    display: inline-block; /* Để có thể thêm padding và margin */
-    background-color: rgba(0, 0, 0, 0.399); /* Nền đen */
-    color: white; /* Chữ trắng */
-    padding: 10px 15px; /* Khoảng cách bên trong */
-    text-decoration: none; /* Mất gạch chân */
-    border-radius: 5px; /* Bo góc */
-    transition: background-color 0.3s ease; /* Hiệu ứng chuyển đổi */
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.399);
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
     cursor: pointer;
 }
 
 .login:hover,
-.logout-btn:hover{
-    background-color: #444; /* Màu nền sáng hơn khi hover */
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.hero {
-    background: url('hero-image.jpg') no-repeat center center/cover;
-    color: #fff;
-    text-align: center;
-    padding: 100px 20px;
-}
-
-.cta-button {
-    background: #e67e22;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+.logout-btn:hover {
+    background-color: #444;
 }
 
 .featured-stories {
@@ -95,11 +108,13 @@ nav ul li a {
 
 .featured-stories h2 {
     text-align: center;
+    color: #fff;
 }
 
 .story {
     text-align: center;
     margin: 20px;
+    display: inline-block;
 }
 
 .story img {
@@ -107,6 +122,10 @@ nav ul li a {
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.story h3 {
+    color: #fff;
 }
 
 .read-button {
@@ -119,22 +138,9 @@ nav ul li a {
     cursor: pointer;
 }
 
-.categories {
-    background: #f4f4f4;
-    padding: 20px;
-}
-
-.category {
-    text-align: center;
-    margin: 15px 0;
-}
-
 footer {
     background: #333;
     color: #fff;
     text-align: center;
     padding: 10px 0;
 }
-
-
-

@@ -62,3 +62,15 @@ document.getElementById('read-button3').addEventListener('click',function(){
 })
 
 
+
+
+
+
+
+// // Thêm các truyện mới vào phần tử có ID là "content"
+// document.getElementById("content").innerHTML += `
+//     <section class="featured-stories">
+    
+        
+//     </section>
+// `;
